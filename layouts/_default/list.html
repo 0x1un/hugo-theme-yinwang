@@ -3,7 +3,7 @@
 <!-- <section> -->
   <div class="outer">
   <ul class="list-group">
-    {{ range where .Pages.ByDate.Reverse "Section" "post" }}
+    {{ range where .Site.RegularPages.ByDate.Reverse "Section" "post" }}
 
     <li class="list-group-item title">
       <!-- <div class="row" id="posts">
