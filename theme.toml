@@ -10,6 +10,8 @@ tags = ["minimal", "blog", "personal", "simple", "yinwang", "clean"]
 features = []
 min_version = "0.38"
 
+usemermaid = true
+
 [author]
   name = "Yobrave Lee"
   homepage = "https://github.com/chinanf-boy/gohugo-theme-yinwang"
