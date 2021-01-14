@@ -15,8 +15,8 @@
     {{ if .IsHome }}
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{{.Site.BaseURL}}css/stylesheet.css">
-    <link rel="stylesheet" href="{{.Site.BaseURL}}css/home.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css/home.css">
 
 
 
@@ -78,8 +78,6 @@
     {{range .Site.Params.langs }} <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/{{ . }}.min.js"></script>{{ end }}
     {{range .Params.langs }} <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/{{ . }}.min.js"></script>{{ end }}
 
-    
-    
     <script>hljs.initHighlightingOnLoad();</script>
 
     {{ end }}
@@ -98,7 +96,6 @@
             resizeTimeout = setTimeout(function() {
             resizeTimeout = null;
             actualResizeHandler();
-        
             // The actualResizeHandler will execute at a rate of 15fps
             }, 66);
         }
@@ -113,7 +110,6 @@
                 }
     }</script>
 
-    <!-- 只有在首页才给出，导航条 -->
     {{ if .IsHome }}
     <nav class="navbar navbar-default navbar-static-top" style="opacity: .9" role="navigation">
         <div class="container-fluid">
@@ -135,16 +131,16 @@
                     {{ if .Site.Params.menus }}
                         {{with .Site.Menus.main }}
                             {{ range . }}
-							<li class="{{ if eq .URL ""}}active{{ end }}"><a href="{{.URL}}">{{.Name}}</a></li>
+                            <li class="{{ if eq .URL ""}}active{{ end }}"><a href="{{.URL}}">{{.Name}}</a></li>
                             {{ end }}
                         {{ end }}
                     {{ else }}
-                        <li class="{{ if eq .Permalink .Site.BaseURL }}active{{ end }}"><a class="nav-item nav-link" href="{{.Site.BaseURL}}">Home</a></li>
+                        <li class="{{ if eq .URL .Site.BaseURL }}active{{ end }}"><a class="nav-item nav-link" href="{{.Site.BaseURL}}">Home</a></li>
                         <li>{{ with .Site.Params.github }}<a class="nav-item nav-link" href="https://github.com/{{ . }}"
                                 target="_blank">GitHub</a>{{ end }}</li>
                         <li>{{ with .Site.Params.gitlab }}<a class="nav-item nav-link" href="https://gitlab.com/{{ . }}"
                                 target="_blank">GitLab</a>{{ end }}</li>
-                        <li class="{{ if eq .Permalink "/about/" }} active{{ end }}"><a class="nav-item nav-link" href="{{.Site.BaseURL}}about/">About</a></li>
+                        <li class="{{ if eq .URL "/about/" }} active{{ end }}"><a class="nav-item nav-link" href="{{.Site.BaseURL}}about/">About</a></li>
                     {{ end }}
                 </ul>
             </div>
@@ -161,3 +157,16 @@
           </span>
         </section> -->
     {{ end }}
+
+<!-- fast search -->
+<!-- <a id="search-btn" style="display: inline-block;" href="javascript:void(0);"> -->
+<!--     <span class="icon-search">Search</span>                                   -->
+<!-- </a>                                                                          -->
+<div id="fastSearch">
+    <input id="searchInput" tabindex="0">
+    <ul id="searchResults">
+    </ul>
+</div>
+<script src="/js/fuse.min.js"></script> <!-- download and copy over fuse.min.js file from fusejs.io -->
+<script src="/js/fastsearch.js"></script>
+<!-- fast search -->
